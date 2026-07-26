@@ -1,0 +1,18 @@
+command:
+  - "python"
+  - "-m"
+  - "app.main"
+
+env:
+  - name: OPENAI_API_KEY
+    value: 'YOUR_OPENAI_API_KEY_HERE'
+  - name: OPENAI_TEXT_MODEL
+    value: 'gpt-4.1-mini'
+  - name: OPENAI_REALTIME_MODEL
+    value: 'gpt-realtime'
+  - name: OPENAI_TTS_MODEL
+    value: 'gpt-4o-mini-tts'
+  - name: DATABASE_PATH
+    value: '/tmp/pocketcases.sqlite3'
+  - name: CLIENT_ORIGIN
+    value: 'https://digitalagentic-7474658628840420.aws.databricksapps.com'

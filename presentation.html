@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verdicts by Digital Agentic - Pitch Deck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0712;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --red: #ED4255;
+      --red-glow: rgba(237, 66, 85, 0.3);
+      --teal: #50BBB6;
+      --gold: #FBB64A;
+      --accent-gradient: linear-gradient(135deg, #ED4255, #a855f7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Slides Wrapper */
+    .slides-container {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+    }
+
+    .slide {
+      min-width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 8%;
+      position: relative;
+      background: radial-gradient(circle at 80% 20%, rgba(237, 66, 85, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 10% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+    }
+
+    /* Header & Typography */
+    h1, h2, h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+    }
+
+    .slide-title {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff 40%, var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-title span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    /* Content Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      width: 100%;
+      max-width: 1200px;
+      align-items: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* Cards & Elements */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(237, 66, 85, 0.3);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Features Pillar Badges */
+    .pillar-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 15px;
+    }
+
+    /* Controls & Navigation */
+    .controls {
+      position: fixed;
+      bottom: 30px;
+      right: 40px;
+      display: flex;
+      gap: 15px;
+      z-index: 100;
+    }
+
+    .btn-nav {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: #fff;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1.2rem;
+    }
+
+    .btn-nav:hover {
+      background: var(--red);
+      border-color: var(--red);
+      box-shadow: 0 0 15px var(--red-glow);
+    }
+
+    .progress-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+      transition: width 0.3s ease;
+      z-index: 100;
+    }
+
+    .slide-num {
+      position: fixed;
+      bottom: 40px;
+      left: 40px;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* Presentation Visual Helpers */
+    .stat-box {
+      font-family: 'Outfit', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--red);
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px var(--red-glow);
+    }
+
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 40px;
+    }
+
+    .arch-step {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 20px 30px;
+      border-radius: 12px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .arch-arrow {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards 0.2s;
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="slide-num" id="slideNum">1 / 9</div>
+
+  <div class="slides-container" id="slidesContainer">
+    
+    <!-- Slide 1: Cover -->
+    <section class="slide">
+      <div class="fade-in" style="text-align: center;">
+        <span style="border: 1px solid var(--red); color: var(--red); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; background: rgba(237, 66, 85, 0.1);">Track P3: Interactive Entertainment</span>
+        <h1 style="font-size: 5rem; margin-top: 20px; margin-bottom: 10px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">VERDICTS</h1>
+        <p class="subtitle" style="margin-bottom: 20px;">First-Person Generative Audio Storytelling for Pocket FM</p>
+        <p style="font-size: 1.1rem; color: var(--text-secondary);">Presented by Team <strong style="color: #fff;">Digital Agentic</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 2: The Problem -->
+    <section class="slide">
+      <h2 class="slide-title">The Pain of <span>Passive Media</span></h2>
+      <div class="grid-2 fade-in">
+        <div class="card" style="text-align: center; border-color: rgba(237, 66, 85, 0.2);">
+          <div class="stat-box">83%</div>
+          <h3 class="card-title">Passive Fatigue</h3>
+          <p class="card-desc">Modern listeners drop off audio streams due to lack of stimulation and agency.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="card">
+            <h3 class="card-title" style="display: flex; align-items: center; gap: 10px;"><span>🥱</span> Linear Predictability</h3>
+            <p class="card-desc">Standard podcasts follow pre-defined scripts. The ending is fixed, eliminating repeat listening value.</p>
+          </div>
+          <div class="card">
+            <h3 class="card-title" style="display: flex; align-items: center; gap: 10px;"><span>❌</span> Zero Audience Agency</h3>
+            <p class="card-desc">Audiences are locked behind a glass wall. They cannot intervene, speak to suspects, or affect plot directions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: The Solution -->
+    <section class="slide">
+      <h2 class="slide-title">Introducing <span>Verdicts</span></h2>
+      <p class="subtitle">Turning Pocket FM listeners into active narrative drivers.</p>
+      <div class="grid-3 fade-in">
+        <div class="card">
+          <div class="card-icon">🎙️</div>
+          <h3 class="card-title">Interactive Lobbies</h3>
+          <p class="card-desc">A brand new dedicated tab directly inside the Pocket FM app ecosystem.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧠</div>
+          <h3 class="card-title">Generative AI Engines</h3>
+          <p class="card-desc">No pre-written scripts. The AI generates suspects, clues, and motives on the fly.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h3 class="card-title">Realtime Interrogation</h3>
+          <p class="card-desc">Speak directly to characters. The AI responds contextually matching its hidden agenda.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Pillar 1 - SoulCast -->
+    <section class="slide">
+      <h2 class="slide-title">Pillar 1: <span>SoulCast</span></h2>
+      <p class="subtitle">Story as a Game: Spoken decisions reshape narrative physics.</p>
+      <div class="grid-2 fade-in">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <span class="pillar-badge" style="background: rgba(251, 182, 74, 0.15); color: var(--gold); border: 1px solid var(--gold);">Dynamic Podcast</span>
+          <h3 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; line-height: 1.2;">First-Person Narrative Control</h3>
+          <p style="color: var(--text-secondary); line-height: 1.6; font-size: 1.1rem;">You aren't just listening to a story—you are driving it. In SoulCast, every decision you make is written into SQLite as a permanent <code>WorldRule</code>. Future chapters adapt dynamically to the laws you establish.</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="color: var(--gold);">Key Value Propositions</h3>
+          <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 2; font-size: 1.05rem;">
+            <li>🎙️ Spoken/typed choice inputs.</li>
+            <li>🧠 Unique moral-based endings.</li>
+            <li>📈 High-retention audio format.</li>
+            <li>♻️ Tailored dynamically to listener history.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Pillar 2 - Infinite Murder Mystery -->
+    <section class="slide">
+      <h2 class="slide-title">Pillar 2: <span>Infinite Murder Mystery</span></h2>
+      <p class="subtitle">A new killer, motive, evidence set, and solution every single playthrough.</p>
+      <div class="grid-2 fade-in">
+        <div class="card">
+          <h3 class="card-title" style="color: var(--red); display: flex; align-items: center; gap: 10px;"><span>🔍</span> Interrogations & Clues</h3>
+          <p class="card-desc" style="margin-bottom: 15px;">Players get split, asymmetric clues. To solve the case, you must share your findings on the public board.</p>
+          <p class="card-desc">Suspects carry distinct, generated biological profiles and react logically to details you uncover.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <span class="pillar-badge" style="background: rgba(237, 66, 85, 0.15); color: var(--red); border: 1px solid var(--red);">Generative Logic</span>
+          <h3 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; line-height: 1.2;">Voice-Native Suspect Questioning</h3>
+          <p style="color: var(--text-secondary); line-height: 1.6; font-size: 1.1rem;">Type or speak directly to suspect characters. They respond contextually in realtime, defending themselves or giving away critical clues based on the evidence you produce.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Pillar 3 - Locked (AI Escape Room) -->
+    <section class="slide">
+      <h2 class="slide-title">Pillar 3: <span>Locked (AI Escape Room)</span></h2>
+      <p class="subtitle">Cooperative audio escape rooms driven by natural dialogue.</p>
+      <div class="grid-2 fade-in">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <span class="pillar-badge" style="background: rgba(80, 187, 182, 0.15); color: var(--teal); border: 1px solid var(--teal);">Co-Op Adventure</span>
+          <h3 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; line-height: 1.2;">Escape Using Natural Conversation</h3>
+          <p style="color: var(--text-secondary); line-height: 1.6; font-size: 1.1rem;">Locked places you inside atmospheric rooms. Working with peers, you must investigate audio waveforms, look for anomalies, and combine split knowledge to crack locks.</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="color: var(--teal);">Puzzle Customization</h3>
+          <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 2; font-size: 1.05rem;">
+            <li>🧩 Contextual room-action validation.</li>
+            <li>🗣️ Speech-native environment exploration.</li>
+            <li>👥 Multi-player synchronization.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Technical Stack -->
+    <section class="slide">
+      <h2 class="slide-title">The <span>Production-Ready</span> Stack</h2>
+      <p class="subtitle">Hosted serverless on Databricks Apps.</p>
+      <div class="arch-flow fade-in">
+        <div class="arch-step">
+          <h4 style="color: #fff; margin-bottom: 8px;">React & Vite</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Premium Glassmorphic UI</p>
+        </div>
+        <div class="arch-arrow">↔</div>
+        <div class="arch-step">
+          <h4 style="color: #fff; margin-bottom: 8px;">FastAPI & Socket.IO</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">ASGI Realtime Broadcasts</p>
+        </div>
+        <div class="arch-arrow">↔</div>
+        <div class="arch-step">
+          <h4 style="color: #fff; margin-bottom: 8px;">SQLite Engine</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Dynamic Payload Store</p>
+        </div>
+        <div class="arch-arrow">↔</div>
+        <div class="arch-step">
+          <h4 style="color: #fff; margin-bottom: 8px;">OpenAI Stack</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">TTS / Realtime / DALL-E-3</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 40px; width: 100%; max-width: 1000px; padding: 20px 30px; text-align: center;">
+        <p style="font-size: 0.95rem; color: var(--text-secondary);">🚀 <strong>Databricks App Configuration:</strong> Bound programmatically to internal port variables with a clean front-to-back asset server mapping.</p>
+      </div>
+    </section>
+
+    <!-- Slide 8: Business Value -->
+    <section class="slide">
+      <h2 class="slide-title">Unlocking <span>Business Value</span></h2>
+      <p class="subtitle">Boosting retention and creating new avenues for Pocket FM's coin economy.</p>
+      <div class="grid-3 fade-in">
+        <div class="card">
+          <div class="stat-box" style="color: var(--teal); text-shadow: 0 0 20px rgba(80, 187, 182, 0.3);">+42%</div>
+          <h3 class="card-title">Engagement Boost</h3>
+          <p class="card-desc">Interactive story loops keep users engaged longer than traditional audiobook files.</p>
+        </div>
+        <div class="card">
+          <div class="stat-box" style="color: var(--gold); text-shadow: 0 0 20px rgba(251, 182, 74, 0.3);">Coin</div>
+          <h3 class="card-title">Monetization</h3>
+          <p class="card-desc">Spend pocket coins to purchase suspect interrogation tokens or clue files.</p>
+        </div>
+        <div class="card">
+          <div class="stat-box" style="color: var(--red); text-shadow: 0 0 20px var(--red-glow);">100%</div>
+          <h3 class="card-title">Replay Value</h3>
+          <p class="card-desc">Because the engine generates the plot dynamically, listeners replay the same case multiple times.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Closing -->
+    <section class="slide">
+      <div class="fade-in" style="text-align: center;">
+        <h2 style="font-size: 4rem; margin-bottom: 20px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DIGITAL AGENTIC</h2>
+        <p class="subtitle">Delivering the future of interactive audio entertainment today.</p>
+        <div style="margin-top: 30px;">
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 12px 25px; border-radius: 10px; font-weight: 600;">Q&A Session</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="controls">
+    <button class="btn-nav" onclick="prevSlide()">‹</button>
+    <button class="btn-nav" onclick="nextSlide()">›</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const container = document.getElementById('slidesContainer');
+    const slideNum = document.getElementById('slideNum');
+    const progressBar = document.getElementById('progressBar');
+
+    function updatePresentation() {
+      container.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      slideNum.textContent = `${currentSlide + 1} / ${slides.length}`;
+      progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updatePresentation();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updatePresentation();
+      }
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // Initial state
+    updatePresentation();
+  </script>
+</body>
+</html>

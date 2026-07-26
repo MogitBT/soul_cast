@@ -1,0 +1,234 @@
+.idleWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.idleCard {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 520px;
+  text-align: center;
+}
+
+.idleIcon { font-size: 52px; margin-bottom: 16px; }
+
+.idleCard h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; color: #50BBB6; }
+
+.idleCard p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.mechanics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.mechItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.mechItem span { font-size: 18px; flex-shrink: 0; }
+.mechItem p { font-size: 13px; color: var(--muted); margin: 0; }
+
+.startBtn {
+  padding: 13px 28px;
+  border-radius: 10px;
+  background: #50BBB6;
+  color: #0a0a12;
+  font-size: 15px;
+  font-weight: 800;
+  transition: opacity 0.15s;
+}
+
+.startBtn:hover { opacity: 0.88; }
+
+/* Game layout */
+.layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  overflow: hidden;
+}
+
+/* Room panel */
+.roomPanel {
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 16px;
+  gap: 8px;
+}
+
+.sectionLabel {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.objectList {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.objectItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.objectFound { border-color: rgba(80,187,182,0.4) !important; }
+
+.objectIcon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+.objectLabel { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.objectDesc  { font-size: 11px; color: var(--muted); line-height: 1.45; }
+
+.foundBadge {
+  position: absolute;
+  top: 8px; right: 8px;
+  color: #50BBB6;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hintBadge {
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(80,187,182,0.08);
+  border: 1px solid rgba(80,187,182,0.25);
+  font-size: 12px;
+  font-weight: 700;
+  color: #50BBB6;
+}
+
+.hintText {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(80,187,182,0.75);
+  margin-top: 4px;
+}
+
+/* Chat panel */
+.chatPanel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatLog {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.thinking {
+  display: flex;
+  gap: 5px;
+  padding: 8px 0;
+}
+
+.thinking span {
+  width: 7px; height: 7px;
+  background: #50BBB6;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite;
+}
+
+.thinking span:nth-child(2) { animation-delay: 0.2s; }
+.thinking span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
+  40%           { transform: scale(1); opacity: 1; }
+}
+
+.chatInput {
+  display: flex;
+  gap: 8px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--line);
+}
+
+.chatInput input {
+  flex: 1;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.chatInput input:focus { border-color: rgba(80,187,182,0.5); }
+
+.sendBtn {
+  width: 42px; height: 42px;
+  border-radius: 8px;
+  background: #50BBB6;
+  color: #0a0a12;
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.sendBtn:disabled { opacity: 0.4; }
+.sendBtn:not(:disabled):hover { opacity: 0.88; }
+
+/* Escaped */
+.escapedScreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  padding: 40px;
+  animation: fadeIn 0.5s ease;
+}
+
+.escapedIcon { font-size: 56px; }
+.escapedScreen h3 { font-size: 24px; font-weight: 800; color: #50BBB6; }
+.escapedScreen p  { font-size: 14px; color: var(--muted); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .roomPanel { max-height: 200px; border-right: none; border-bottom: 1px solid var(--line); }
+}
